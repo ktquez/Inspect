@@ -1,0 +1,23 @@
+{
+  "name": "inspect",
+  "author": "Alan Albuquerque (Ktquez)",
+  "description": "Form validations in Javascript Vanilla, without dependencies and multiple languages",
+  "version": "1.0.0",
+  "main": "inspect.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ktquez/Inspect.git"
+  },
+  "keywords": [
+    "form",
+    "validation"
+  ],
+  "license": [
+    "MIT",
+    "GPL"
+  ],
+  "bugs": {
+    "url": "https://github.com/ktquez/Inspect/issues"
+  },
+  "homepage": "https://github.com/ktquez/Inspect#readme"
+}
