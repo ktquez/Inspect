@@ -1,0 +1,13 @@
+{
+	"required" : "The field :custom is required",
+	"email" : "Please, type a valid :custom",
+	"max" : "The :custom field must contain a maximum of :other characters",
+	"min" : "The :custom field must contain a minimum of :other characters",
+	"card" : "Enter the :custom correctly",
+	"cpf" : "The :custom typed is invalid",
+	"cnpj" : "The :custom typed is invalid",
+	"cpfCnpj" : "The :custom is invalid, please try again",
+	"cep" : "The :custom typed is invalid",
+	"number" : "The field :custom must be a number",
+	"url" : "Please enter a valid :custom"
+}

@@ -1,0 +1,13 @@
+{
+	"required" : "O Campo :custom é obrigatório",
+	"email" : "Por favor, digite um :custom válido",
+	"max" : "O campo :custom tem que conter no máximo :other caracteres",
+	"min" : "O campo :custom tem que conter no mínimo :other caracteres",
+	"card" : "Digite o :custom corretamente",
+	"cpf" : "O :custom digitado é inválido",
+	"cnpj" : "O :custom digitado é inválido",
+	"cpfCnpj" : "O :custom é inválido, por favor tente novamente",
+	"cep" : "O :custom digitado é inválido",
+	"number" : "O Campo :custom tem que ser um número",
+	"url" : "Por favor, digite uma :custom válida"	
+}

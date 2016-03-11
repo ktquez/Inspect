@@ -514,7 +514,19 @@
 		}
 	};
 
-	Inspect.prototype.messages = {};
+	Inspect.prototype.messages = {
+		"required" : "The field :custom is required",
+		"email" : "Please, type a valid :custom",
+		"max" : "The :custom field must contain a maximum of :other characters",
+		"min" : "The :custom field must contain a minimum of :other characters",
+		"card" : "Enter the :custom correctly",
+		"cpf" : "The :custom typed is invalid",
+		"cnpj" : "The :custom typed is invalid",
+		"cpfCnpj" : "The :custom is invalid, please try again",
+		"cep" : "The :custom typed is invalid",
+		"number" : "The field :custom must be a number",
+		"url" : "Please enter a valid :custom"
+	};
 
 	/**
 	 * Returns true if it does not pass verification, returns false if pass the validation
@@ -698,6 +710,22 @@
 	}
 
 	/**
+	 * Pega a url base do script inspect
+	 */
+	function basepath() {
+	    var scripts = document.getElementsByTagName('script'),
+	        script = scripts[scripts.length - 1];
+
+	    if (!!script.getAttribute.length) {
+	    	var path = script.getAttribute('src').split('/');
+	    	path.splice((path.length - 1), 1);
+	    	path = path.toString().replace(/(,)/g, '/');
+
+	    	return path;
+	    }
+	}
+
+	/**
 	 * Ajax
 	 */
 	(function go(){
@@ -712,7 +740,7 @@
 			}
 		};
 
-		xhr.open('GET', 'lang/'+languague+'.json', true);			
+		xhr.open('GET', basepath()+'/lang-inspect/'+languague+'.json', true);			
 		xhr.send();		
 	})();
 
