@@ -81,13 +81,23 @@ Just customize the classes available, ``inspect-message`` and ``inspect-message-
 For validations and data prepared for AJAX requests, use the following syntax:
 ```
 myForm.make(function(data){
-		// your code here (for example: AJAX requests)
+	// your code here (for example: AJAX requests)
 });
 ```
 
 For normal implementation of the form
 ```
 myForm.toSubmit();
+```
+
+### Reset form
+If you need to empty the form, simply use the function `` myForm.pristine(); ``
+For example:
+```
+myForm.make(function(data){
+	myForm.pristine();	// Reset 
+	// your code here (for example: AJAX requests)
+});
 ```
 
 ### Short Syntax
