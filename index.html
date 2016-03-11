@@ -2,11 +2,154 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name='viewport' content="width=device-width,initial-scale=1,maximum-scale=1">
 	<title>Demo - Inspect - Form Validation</title>
+
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		body{
+			font-family: Calibri, "Open Sans", Arial;
+		}
+		form{
+			margin:20px;
+			padding:60px;
+			float:left;
+			background:#efefef;
+			width:480px;
+		}
+		label{
+			width:100%;
+			float:left;
+			margin-bottom:20px;
+			position:relative;
+		}
+		input:not([type='checkbox']):not([type='radio']):not([type='checkbox']), select{
+			width:calc(100% - 20px);
+			padding:10px;
+			float:left;
+		}
+
+	</style>
+
 </head>
 <body>
 
-	
+	<form action="#" method="POST" name="formTest" novalidate>
+		<label for="name">
+			NAME:
+			<br>
+			<input type="text" id="name" name="name" data-rules="required" data-msgCustom="Nome" >
+		</label>
+		<label for="email">
+			EMAIL:
+			<br>
+			<input type="email" id="email" name="email" data-rules="required|email" data-msgCustom="Email" >
+		</label>
+		<label for="amount">
+			AMOUNT:
+			<br>
+			<input type="number" id="amount" name="amount" data-rules="number" data-msgCustom="Quantidade" >
+		</label>
+		<label for="zipcode">
+			CEP:
+			<br>
+			<input type="text" id="zipcode" name="zipcode" data-rules="cep" data-msgCustom="CEP" >
+		</label>
+		<label for="card">
+			CARTÃO DE CRÉDITO:
+			<br>
+			<input type="text" id="card" name="card" data-rules="card" data-msgCustom="Cartão de Crédito" >
+		</label>
+		<label for="cpf">
+			CPF:
+			<br>
+			<input type="text" id="cpf" name="cpf" data-rules="required|cpf" data-msgCustom="CPF" >
+		</label>
+		<label for="cnpj">
+			CNPJ:
+			<br>
+			<input type="text" id="cnpj" name="cnpj" data-rules="required|cpfCnpj" data-msgCustom="CPF/CNPJ" >
+		</label>
+		<label for="state">
+			ESTADOS:
+			<br>
+			<select name="state" id="state" placeholder="Escolha uma opção" data-rules="required" data-msgCustom="Estados">
+				<option value=""></option>
+				<option value="0">Pernambuco</option>
+				<option value="1">São Paulo</option>
+				<option value="2">Goias</option>
+				<option value="3">Amazonas</option>
+			</select>
+		</label>
+		<label for="subject">
+			ASSUNTO:
+			<br>
+			<input type="text" id="subject" name="subject">
+		</label>
+		<p>
+			SEXO:
+		</p>
+		<label for="male">
+			MASCULINO: <input type="radio" id="male" name="gender" value="masculino" data-rules="required">
+		</label>
+		<label for="female">
+			FEMININO:  <input type="radio" id="female" name="gender" value="feminino" data-rules="required">
+		</label>
+		<label for="Aceita">
+			TERMOS:  <input type="checkbox" id="terms" name="terms" data-rules="required">
+		</label>
+		<label for="description">
+			DESCRIPTION:
+			<br>
+			<textarea id="description" name="description" rows="10" style="width:100%;" data-rules="required|max:10" data-msgCustom="Mensagem"></textarea>
+		</label>
+		<button type="submit">
+			ENVIAR
+		</button>
+	</form>
+
+	<form action="#" method="POST" name="formTest2" novalidate>
+		<label for="name">
+			NAME:
+			<br>
+			<input type="text" id="name" name="name" data-rules="required" data-msgCustom="Nome" >
+		</label>
+		<button type="submit">
+			ENVIAR
+		</button>
+	</form>
+
+
+	<script src="./dist/inspect.min.js"></script>
+	<script>
+		
+	// Instantiates the form only through the name
+	var test = new Inspect({
+		'form' : 'formTest',
+		'touched' : true,
+		'tooltip' : true
+	});
+
+	// If passed in validation, return a promise with the form data object
+	test.make(function(data){
+		console.log(data);
+		// your code here (for example: AJAX requests)
+	});
+
+	// Instance the form passing settings
+	var test2 = new Inspect({
+		'form' : 'formTest2',
+		'touched' : true,
+		'tooltip' : true
+	});
+
+	// If passed in validation, submited the form 
+	test2.toSubmit();
+
+	</script>
 	
 </body>
 </html>

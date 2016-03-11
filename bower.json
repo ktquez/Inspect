@@ -1,7 +1,8 @@
 {
   "name": "inspect",
   "description": "Form validations in Javascript Vanilla, without dependencies and multiple languages",
-  "main": "inspect.js",
+  "version" : "1.0.0",
+  "main": "./dist/inspect.min.js",
   "authors": [
     "Alan Albuquerque (Ktquez)"
   ],
@@ -14,5 +15,8 @@
     "validation"
   ],
   "moduleType": [],
-  "homepage": "https://github.com/ktquez/Inspect"
+  "homepage": "https://github.com/ktquez/Inspect",
+  "ignore" : [
+    "node_modules"
+  ]
 }
