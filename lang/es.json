@@ -1,0 +1,13 @@
+{
+	"required" : "Se requiere el campo :custom",
+	"email" : "Se requiere una dirección de :custom válida.",
+	"max" : "El campo :custom debe contener un máximo de :other caracteres",
+	"min" : "El campo :custom debe contener al menos :other caracteres",
+	"card" : "Escriba el :custom correctamente",
+	"cpf" : "El :custom introducido no es válido.",
+	"cnpj" : "El :custom introducido no es válido.",
+	"cpfCnpj" : "El :custom no es válido, por favor, inténtelo de nuevo",
+	"cep" : "El :custom introducido no es válido.",
+	"number" : "EL Campo :custom Debe ser un número",
+	"url" : "Por favor, introduzca una :custom válido"
+}
