@@ -1,6 +1,6 @@
 {
-  "name": "inspect",
-  "author": "Alan Albuquerque (Ktquez)",
+  "name": "inspect-form",
+  "author": "Alan Albuquerque (Ktquez) <ktquez@gmail.com> (http://ktquez.com)",
   "description": "Form validations in Javascript Vanilla, without dependencies and multiple languages",
   "version": "1.0.0",
   "main": "./dist/inspect.min.js",
