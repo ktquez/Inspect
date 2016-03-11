@@ -121,8 +121,21 @@ var myForm3 = new Inspect({
 }).toSubmit();
 ```
 
+## Languages
+At the time the error messages are only available in:
+* **pt-br** -- Portuguese BR
+* **pt** -- Portuguese
+* **en** -- English
+* **es** -- Spanish
+
+### How to use custom messages by language
+To make it work the messages in the correct language, simply declare the attribute lang in HTML tag
+```
+<html lang="en">
+```
+
 ## Current version stable
-** V1.0.0 **
+**V1.0.0**
 
 ## ChangeLog
 
