@@ -14,6 +14,11 @@ First include the script of the Inspect on your page
 npm install inspect-form --save
 ```
 
+### bower
+```
+bower install inspect-form --save
+```
+
 ## Create your form
 ```
 <form action="#" method="POST" name="formTest" novalidate>

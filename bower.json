@@ -1,10 +1,10 @@
 {
   "name": "inspect-form",
   "description": "Form validations in Javascript Vanilla, without dependencies and multiple languages",
-  "version" : "1.0.2",
+  "version" : "1.0.3",
   "main": "./dist/inspect.min.js",
   "authors": [
-    "Alan Albuquerque (Ktquez)"
+    "Alan Albuquerque (Ktquez) <ktquez@gmail.com>"
   ],
   "license": [
     "MIT",
@@ -12,7 +12,13 @@
   ],
   "keywords": [
     "form",
-    "validation"
+    "validation",
+    "inspect"
+  ],
+  "ignore" : [
+    "node_modules",
+    "index.html",
+    "script.js"
   ],
   "moduleType": [],
   "homepage": "https://github.com/ktquez/Inspect",
