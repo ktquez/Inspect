@@ -9,6 +9,11 @@ First include the script of the Inspect on your page
 <script src="./dist/inspect.min.js"></script>
 ```
 
+### npm
+```
+npm install inspect-form --save
+```
+
 ## Create your form
 ```
 <form action="#" method="POST" name="formTest" novalidate>
