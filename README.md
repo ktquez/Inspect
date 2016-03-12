@@ -4,11 +4,6 @@ Form validation in Javascript Vanilla, without dependencies and multiple languag
 ![alt tag](https://cloud.githubusercontent.com/assets/8084606/13711641/6b5a910e-e79e-11e5-927f-b38ee3f9a0e7.gif)
 
 ## How to use
-First include the script of the Inspect on your page
-```
-<script src="./path/to/inspect.min.js"></script>
-```
-
 ### npm
 ```
 npm install inspect-form --save
@@ -17,6 +12,11 @@ npm install inspect-form --save
 ### bower
 ```
 bower install inspect-form --save
+```
+
+Include the script of the Inspect on your page
+```
+<script src="./path/to/inspect.min.js"></script>
 ```
 
 ## Create your form
@@ -79,7 +79,7 @@ Currently you can customize some inspect actions, customize how the form will be
 * **form:** -- Name the form
 * **touched:** -- If you want the Inspect check, when the user take the focus off the field, default : false
 * **tooltip:** -- If you want to use the alert more friendly, default : false
-**Info: ** By default the alerts are simple, you can customize through its style css, simple alert structure created:
+<br>**Info:** By default the alerts are simple, you can customize through its style css, simple alert structure created:
 ```
 <div class="inspect-message" style="position:relative;width:100%;float:left;">
   <span class="inspect-message-text" style="color: red;">O Campo Nome é obrigatório</span>
@@ -90,6 +90,7 @@ Just customize the classes available, ``inspect-message`` and ``inspect-message-
 ## Performing validation with the created instances
 For validations and data prepared for AJAX requests, use the following syntax:
 ```
+var myForm = new Inspect('formTest');
 myForm.make(function(data){
 	// your code here (for example: AJAX requests)
 });
@@ -97,6 +98,7 @@ myForm.make(function(data){
 
 For normal implementation of the form
 ```
+var myForm = new Inspect('formTest');
 myForm.toSubmit();
 ```
 
@@ -104,6 +106,7 @@ myForm.toSubmit();
 If you need to empty the form, simply use the function `` myForm.pristine(); ``
 For example:
 ```
+var myForm = new Inspect('formTest');
 myForm.make(function(data){
 	myForm.pristine();	// Reset 
 	// your code here (for example: AJAX requests)
@@ -155,7 +158,7 @@ To make it work the messages in the correct language, simply declare the attribu
 ```
 
 ## Current version stable
-**V1.0.0**
+**V1.0.3**
 
 ## ChangeLog
 
