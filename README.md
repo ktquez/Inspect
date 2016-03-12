@@ -6,7 +6,7 @@ Form validation in Javascript Vanilla, without dependencies and multiple languag
 ## How to use
 First include the script of the Inspect on your page
 ```
-<script src="./dist/inspect.min.js"></script>
+<script src="./path/to/inspect.min.js"></script>
 ```
 
 ### npm
