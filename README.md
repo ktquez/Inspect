@@ -5,22 +5,24 @@ Form validation in Javascript Vanilla, without dependencies and multiple languag
 
 ## How to use
 ### npm
-```
+```shell
 npm install inspect-form --save
 ```
 
 ### bower
-```
+```shell
 bower install inspect-form --save
 ```
 
 Include the script of the Inspect on your page
-```
+```html
 <script src="./path/to/inspect.min.js"></script>
+...
+</body>
 ```
 
 ## Create your form
-```
+```html
 <form action="#" method="POST" name="formTest" novalidate>
   <label for="name">
 		NAME:
@@ -60,12 +62,12 @@ Include the script of the Inspect on your page
 
 ## Defining the form on Inspect
 Instantiates the form only through the name the form
-```
+```js
 var myForm = new Inspect('formTest');
 ```
 
 Instance the form through the settings
-```
+```js
 var myForm = new Inspect({
 		'form' : 'formTest',
 		'touched' : true,
@@ -80,7 +82,7 @@ Currently you can customize some inspect actions, customize how the form will be
 * **touched:** -- If you want the Inspect check, when the user take the focus off the field, default : false
 * **tooltip:** -- If you want to use the alert more friendly, default : false
 <br>**Info:** By default the alerts are simple, you can customize through its style css, simple alert structure created:
-```
+```html
 <div class="inspect-message" style="position:relative;width:100%;float:left;">
   <span class="inspect-message-text" style="color: red;">O Campo Nome é obrigatório</span>
 </div>
@@ -89,7 +91,7 @@ Just customize the classes available, ``inspect-message`` and ``inspect-message-
 
 ## Performing validation with the created instances
 For validations and data prepared for AJAX requests, use the following syntax:
-```
+```js
 var myForm = new Inspect('formTest');
 myForm.make(function(data){
 	// your code here (for example: AJAX requests)
@@ -97,7 +99,7 @@ myForm.make(function(data){
 ```
 
 For normal implementation of the form
-```
+```js
 var myForm = new Inspect('formTest');
 myForm.toSubmit();
 ```
@@ -105,7 +107,7 @@ myForm.toSubmit();
 ### Reset form
 If you need to empty the form, simply use the function `` myForm.pristine(); ``
 For example:
-```
+```js
 var myForm = new Inspect('formTest');
 myForm.make(function(data){
 	myForm.pristine();	// Reset 
@@ -114,11 +116,11 @@ myForm.make(function(data){
 ```
 
 ### Short Syntax
-```
+```js
 var myForm = new Inspect('formTest').toSubmit();
 ```
 Or
-```
+```js
 var myForm = new Inspect({
   'form' : 'formTest',
   'tooltip' : true
@@ -128,7 +130,7 @@ var myForm = new Inspect({
 ```
 
 ## For more than one form per page
-```
+```js
 var myForm = new Inspect('formTest').toSubmit();
 
 var myForm2 = new Inspect({
@@ -153,7 +155,7 @@ At the time the error messages are only available in:
 
 ### How to use custom messages by language
 To make it work the messages in the correct language, simply declare the attribute lang in HTML tag
-```
+```html
 <html lang="en">
 ```
 
