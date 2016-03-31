@@ -115,11 +115,11 @@ myForm.make(function(data){
 
 ### Short Syntax
 ```js
-var myForm = new Inspect('formTest').toSubmit();
+new Inspect('formTest').toSubmit();
 ```
 Or
 ```js
-var myForm = new Inspect({
+new Inspect({
   'form' : 'formTest',
   'tooltip' : true
 }).make(function(data){
@@ -129,19 +129,22 @@ var myForm = new Inspect({
 
 ## For more than one form per page
 ```js
-var myForm = new Inspect('formTest').toSubmit();
+var myForm = new Inspect('formTest')
+myForm.toSubmit();
 
 var myForm2 = new Inspect({
   'form' : 'formTest2',
   'tooltip' : true
-}).make(function(){
+});
+myForm2.make(function(){
   // your code here (for example: AJAX requests)
 });
 
 var myForm3 = new Inspect({
   'form' : 'formTest3',
   'tooltip' : true
-}).toSubmit();
+})
+myForm3.toSubmit();
 ```
 
 ## Languages
