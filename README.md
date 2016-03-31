@@ -24,19 +24,17 @@ Include the script of the Inspect on your page
 ## Create your form
 ```html
 <form action="#" method="POST" name="formTest" novalidate>
-  <label for="name">
-		NAME:
-		<br>
-		<input type="text" id="name" name="name" data-rules="required" data-msgCustom="Fullname" >
-	</label>
-	<label for="email">
-		EMAIL:
-		<br>
-		<input type="email" id="email" name="email" data-rules="required|email" data-msgCustom="Email" >
-	</label>
-	<button type="submit">
+<div class="form-group">
+  <label for="name">NAME:</label>
+	<input type="text" id="name" name="name" data-rules="required" data-msgCustom="Fullname">
+</div>
+<div class="form-group">
+	<label for="email">EMAIL:</label>
+		<input type="email" id="email" name="email" data-rules="required|email" data-msgCustom="Email">
+</div>
+<button type="submit">
 		ENVIAR
-	</button>
+</button>
 </form>
 ```
 
