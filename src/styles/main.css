@@ -1,0 +1,189 @@
+:root {
+	
+	/*Colors*/
+	--red: #f38181;
+	--dark-purple: #625772;
+	--white: #fff;
+	--silver: #f9f9f9;
+	--light-blue: #a9eee6;
+	--cream: #fefaec;
+
+	--font-size: 16;
+
+	@custom-media --mobile (width <= 480px);
+	@custom-media --small (width >= 481px) and (width <= 800px);
+	@custom-media --medium (width >= 801px) and (width <= 1024px);
+	@custom-media --large (width >= 1025px);
+	
+};
+
+body {
+	font-family: Roboto, Arial;
+	font-size: 100%;
+}
+
+.link {
+	color:var(--red);
+	padding-bottom: 2px;
+	border-bottom: 1px dotted var(--red);
+	float: left;
+	font-size: 14px;
+}
+
+.margin {
+	margin-top: 20px;
+}
+
+/*  TOP  */
+.header {
+	height: 50vh;
+	background-color: var(--red);
+}
+
+.ribbom_github {
+	position: absolute; 
+	top: 0; 
+	right: 0; 
+	border: 0;
+}
+
+.box-top {
+	color: #fff;
+	text-align: center;
+}
+
+.top {
+	> .title {font-size: 60px;}
+	> .subtitle {font-size: 16px;}
+	> .subtitle {margin-bottom: 20px;}
+	> .box-btn {
+		float:left;
+	}
+}
+
+@media(--mobile) {  	
+  	.top {
+  		> .title {font-size: 40px};
+  	}
+}
+
+.box-btn {
+	> .btn_stars_gh {
+		float: left;
+		width: 80px;
+	} 
+	> .btn_down {
+		float: left;
+		padding: 3px 10px 2px;
+		font-size: 10px;
+		margin-right: 10px;
+		border-radius: 4px;
+		color: #fff;
+		background-color:  var(--dark-purple);
+		border: 1px solid transparent;			
+
+		&:hover{		
+			background-color: var(--dark-purple:);
+			border: 1px solid var(--dark-purple);			
+		}
+	}
+} 	
+
+/*  CONTENT  */
+.main {
+	margin-bottom: 40px;
+	.title {
+		margin-top: 40px;
+		font-size: calc(40 / var(--font-size))em;
+	}
+}
+
+.how-using {	
+	> .block{
+		margin-top: 20px;
+	}
+}
+
+.examples {
+	> .title-bg-section {
+		background-color: var(--dark-purple);
+		margin-top: 40px;
+		margin-bottom: 40px;
+		padding-top: 60px;
+		padding-bottom: 60px;
+		text-align: center;
+		font-size: 50px;
+		color: var(--white);
+	}
+}
+
+.box_example {	
+	margin-bottom: 30px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #f2f2f2;
+
+	> .title_feature {font-size: 25px;}
+	> .code, > .action {
+		float: left;
+	}
+	> .action {
+		margin-top: 6px;
+		> .title_demo {
+			margin-bottom: 20px;
+			margin-top: 10px;
+		}
+	}
+}
+
+.footer {
+	background-color: var(--dark-purple:); 
+	padding-bottom: 40px;
+	padding-top: 40px;
+	color: var(--white);
+	font-size: 14px;
+
+	a {
+		color: var(--dark-purple);
+	}
+
+	.box-btn {
+		float: left;
+	}
+}
+
+/*form*/
+.form-group {
+	margin-bottom: 20px;
+
+	> label {
+		margin-bottom: 6px;
+		font-size: 14px;
+	}
+	> input {
+		background-color: var(--cream);
+		padding:8px;
+		width:calc(100% - 16px);
+		z-index:9;
+	}
+
+}
+
+button[type='submit'] {
+	padding: 6px 8px;
+	background-color: var(--dark-purple);
+	color: var(--white);
+	border-radius: 3px;
+
+	&:hover{
+		background-color: var(--red);
+	};
+}
+
+/*prism*/
+:not(pre) > code[class*="language-"], pre[class*="language-"] {background-color: var(--cream);}
+code[class*="language-"], pre[class*="language-"] {font-size: 14px;}
+
+/*pickout*/
+.pk-field.-multiple {
+	cursor: crosshair;	
+}

@@ -1,0 +1,39 @@
+{
+  "name": "pickout-gh-page",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ktquez/pickout.git"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "browser-sync": "^2.12.3",
+    "cssnext": "^1.8.4",
+    "csswring": "^4.2.2",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-cli": "^1.2.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-postcss": "^6.1.0",
+    "gulp-strip-debug": "^1.1.0",
+    "gulp-uglify": "^1.5.3",
+    "gulp-watch": "^4.3.5",
+    "postcss-nested": "^1.0.0",
+    "precss": "^1.4.0"
+  },
+  "author": {
+    "name": "Alan Ktquez",
+    "email": "ktquez@gmail.com",
+    "url": "http://ktquez.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ktquez/pickout/issues"
+  },
+  "homepage": "https://github.com/ktquez/pickout/tree/gh-pages"
+}
