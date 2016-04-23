@@ -291,7 +291,7 @@
 
 				// Se existir error, move o scroll para o alert de cima para baixo
 				if (self[self.config.form].error) {
-					self.utils.animateScroll(this.config.animateScroll);
+					self.utils.animateScroll(self);
 				}
 
 				return;
@@ -329,6 +329,17 @@
 
 			// Feeds the block
 			block.style.position = 'relative';
+			var prevBlock = block.previousElementSibling;
+			var nextBlock = block.nextElementSibling;
+						
+			// Z-index
+			if (!!prevBlock) {
+				block.style.zIndex = !prevBlock.style.zIndex.length ? (!nextBlock.style.zIndex.length ? '900' : Number(nextBlock.style.zIndex) + 2) : prevBlock.style.zIndex;
+				block.style.zIndex = block.style.zIndex - 1;
+			} else {
+				block.style.zIndex = '1000';
+			} 
+
 			block.appendChild(alert);
 		},
 
@@ -349,19 +360,25 @@
 
 	Inspect.prototype.utils = {	
 
-		animateScroll : function(interval){
+		animateScroll : function(data){
+
+			var el = data[data.config.form].dom.querySelector('.inspect-message').parentElement,
+				offset = el.getBoundingClientRect(),
+				doc = el.ownerDocument,
+				win = doc.defaultView,
+				docEl = doc.documentElement,
+				pos = offset.top + win.pageYOffset - docEl.clientTop;
+
 
 			// Runs the scroll at intervals
 			var animate = setInterval(function(){
-				scroll(interval);
+				scroll(data.config.animateScroll);
 			}, 10);
 
 			function scroll(interval){
-				var scroll = window.scrollY,
-					el = document.querySelector('.inspect-message'),
-					offset = el.offsetParent.offsetTop;
+				var scroll = window.scrollY;
 
-				if (offset < scroll){
+				if (pos < scroll){
 					window.scrollTo(0, scroll - interval);	
 					return;					
 				}
@@ -427,7 +444,7 @@
 
 			bottom.setAttribute('style', 'background:#f2f2f2;height:15px;width:100%;float:left;');
 
-			main.setAttribute('style', 'background:rgba(231,76,60,0.8);font-family:inherit;line-height:1em;color:#fff;width:160px;padding:10px 6px;text-align:center;float:left;');
+			main.setAttribute('style', 'background:rgba(231,76,60,0.8);font-size:14px;font-family:inherit;line-height:1em;color:#fff;width:160px;padding:10px 6px;text-align:center;float:left;');
 			main.setAttribute('class','inspect-message-text');
 
 			div.appendChild(main);
@@ -729,7 +746,7 @@
 	 * Ajax
 	 */
 	(function go(){
-		var languague = document.getElementsByTagName('html')[0].getAttribute('lang'),
+		var languague = document.getElementsByTagName('html')[0].getAttribute('lang').toLowerCase(),
 			xhr = getXHR();		
 
 		xhr.onreadystatechange = function(){				

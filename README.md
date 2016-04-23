@@ -1,6 +1,8 @@
 # Inspect
 Form validation in Javascript Vanilla, without dependencies and multiple languages. ~8kb
 
+[DEMO PAGE - http://ktquez.github.io/Inspect/](http://ktquez.github.io/Inspect/)
+
 ![alt tag](https://cloud.githubusercontent.com/assets/8084606/13711641/6b5a910e-e79e-11e5-927f-b38ee3f9a0e7.gif)
 
 ## How to use
@@ -161,9 +163,12 @@ To make it work the messages in the correct language, simply declare the attribu
 ```
 
 ## Current version stable
-**V1.0.3**
+**V1.0.4**
 
 ## ChangeLog
+
+**V1.0.4**
+ - Correction alert tooltip 
 
 ## Contributing
 - Check the open issues or open a new issue to start a discussion around your feature idea or the bug you found.
