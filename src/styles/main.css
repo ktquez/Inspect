@@ -131,14 +131,14 @@ body {
 			margin-top: 10px;
 		}
 	}
+}
 
-	> .result_inspect{
-		width: calc(100% - 20px);
-		background-color: var(--cream);
-		padding: 20px;
-		float: left;
-		margin-top: 20px;
-	}
+#result_inspect{
+	width: calc(100% - 20px);
+	background-color: var(--cream);
+	padding: 20px;
+	float: left;
+	margin-top: 20px;
 }
 
 @media(--mobile){
@@ -186,6 +186,11 @@ body {
 		width: calc(100% - 16px);
 		z-index: 9;
 		font-size: 14px;		
+	}
+	> .format {
+		font-size:12px;
+		margin-bottom:6px;
+		color:#bbb;
 	}
 
 }

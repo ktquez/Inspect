@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -28,7 +28,7 @@
 				</p>
 				
 				<div class="box-btn centerX">
-					<a class="btn_down" href="https://github.com/ktquez/pickout">DOWNLOAD</a>
+					<a class="btn_down" href="https://github.com/ktquez/Inspect/archive/master.zip">DOWNLOAD</a>
 					
 					<div class="fl" style="margin-right:10px;">						
 						<a href="https://twitter.com/share" class="twitter-share-button fl" data-url="https://github.com/ktquez/Inspect" data-text="Form validation in Javascript Vanilla, without dependencies and multiple languages. &lt; 3kb gzipped." data-via="ktquez">Tweet</a>
@@ -95,27 +95,27 @@
     &lt;label for="email">EMAIL:&lt;/label>
         &lt;input type="email" id="email" name="email" data-rules="required|email" data-msgCustom="Email">
 &lt;/div>
-&lt;div class="form-group fullX">
+&lt;div class="form-group">
     &lt;label for="cep" class="fl">CEP:&lt;/label>
     &lt;input type="text" id="cep" name="cep" data-rules="cep" data-msgCustom="CEP">
 &lt;/div>
-&lt;div class="form-group fullX">
+&lt;div class="form-group">
     &lt;label for="card" class="fl">CREDIT CARD:&lt;/label>
     &lt;input type="text" id="card" name="card" data-rules="card" data-msgCustom="CREDIT CARD" >
 &lt;/div>
-&lt;div class="form-group fullX">
+&lt;div class="form-group">
     &lt;label for="cpf" class="fl">CPF:&lt;/label>
     &lt;input type="text" id="cpf" name="cpf" data-rules="cpf" data-msgCustom="CPF" >
 &lt;/div>
-&lt;div class="form-group fullX">
+&lt;div class="form-group">
     &lt;label for="cnpj" class="fl">CNPJ:&lt;/label>
     &lt;input type="text" id="cnpj" name="cnpj" data-rules="cnpj" data-msgCustom="CNPJ" >
 &lt;/div>
-&lt;div class="form-group fullX">
+&lt;div class="form-group">
     &lt;label for="terms" class="fl">TERMS:&lt;/label>
     &lt;input type="checkbox" id="terms" name="terms" data-rules="required">
 &lt;/div>
-&lt;div class="form-group fullX">
+&lt;div class="form-group">
     &lt;label for="message" class="fl">MESSAGE:&lt;/label>
     &lt;textarea id="message" name="message" rows="10" style="width:100%;" data-rules="required|max:10" data-msgCustom="MESSAGE">&lt;/textarea>
 &lt;/div>
@@ -144,18 +144,22 @@ new Inspect({
 							</div>
 							<div class="form-group fullX">
 							    <label for="cep" class="fl">CEP:</label>
+							    <span class="format fullX">Format: 99999-999 or 99999999</span>
 							    <input type="text" id="cep" name="cep" data-rules="cep" data-msgCustom="CEP">
 							</div>
 							<div class="form-group fullX">
 							    <label for="card" class="fl">CREDIT CARD:</label>
+							    <span class="format fullX">Format: 9999 9999 9999 9999 or 9999999999999999</span>							    
 							    <input type="text" id="card" name="card" data-rules="card" data-msgCustom="CREDIT CARD" >
 							</div>
 							<div class="form-group fullX">
 							    <label for="cpf" class="fl">CPF:</label>
+							    <span class="format fullX">Format: 999.999.999-99 or 99999999999</span>							    
 							    <input type="text" id="cpf" name="cpf" data-rules="cpf" data-msgCustom="CPF" >
 							</div>
 							<div class="form-group fullX">
 							    <label for="cnpj" class="fl">CNPJ:</label>
+							    <span class="format fullX">Format: 99.999.999/9999-99 or 99999999999999</span>							    
 							    <input type="text" id="cnpj" name="cnpj" data-rules="cnpj" data-msgCustom="CNPJ" >
 							</div>
 							<div class="form-group fullX">
@@ -173,9 +177,9 @@ new Inspect({
 					</div>
 				</div>
 
-				<!-- <div class="box_example fullX">					
+				<div class="box_example fullX">					
 					<h3 class="title_feature fullX">For validations and data prepared for AJAX requests</h3>
-					
+
 					<div class="code c-m12 c-t6 cpl">
 						<pre><code class="language-markup">&lt;form action="#" method="POST" name="formTest" novalidate>
 &lt;div class="form-group">
@@ -190,7 +194,7 @@ new Inspect({
     &lt;label for="subject">EMAIL:&lt;/label>
         &lt;input type="text" id="subject" name="subject" data-rules="required" data-msgCustom="Subject">
 &lt;/div>
-&lt;div class="form-group fullX">
+&lt;div class="form-group">
     &lt;label for="message" class="fl">MESSAGE:&lt;/label>
     &lt;textarea id="message" name="message" rows="10" style="width:100%;" data-rules="required|max:10" data-msgCustom="MESSAGE">&lt;/textarea>
 &lt;/div>
@@ -199,7 +203,7 @@ new Inspect({
 &lt;/button>
 &lt;/form></code></pre>
 
-					<pre><code class="language-javascript">// javaScript
+				<pre><code class="language-javascript">// javaScript
 var inspect = new Inspect({
 	'form' : 'formajax',
     'touched' : true,
@@ -207,6 +211,7 @@ var inspect = new Inspect({
 
 inspect.make(function(data) {
 	// your code here (for example: AJAX requests)
+
 	// Clean the form
 	inspect.pristine(); 	
 });
@@ -217,30 +222,32 @@ inspect.make(function(data) {
 						<form action="#" method="POST" class="fullX" name="formajax" novalidate>
 							<div class="form-group fullX">
 							  <label for="name" class="fl">NAME:</label>
-							  <input type="text" id="name" name="name-formajax" data-rules="required" data-msgCustom="Fullname">
+							  <input type="text" id="name" name="name" data-rules="required" data-msgCustom="Fullname">
 							</div>
 							<div class="form-group fullX">
 							    <label for="email" class="fl">EMAIL:</label>
-							    <input type="email" id="email" name="email-formajax" data-rules="required|email" data-msgCustom="Email">
+							    <input type="email" id="email" name="email" data-rules="required|email" data-msgCustom="Email">
 							</div>
 							<div class="form-group fullX">
 							    <label for="subject" class="fl">SUBJECT:</label>
-							    <input type="text" id="subject" name="subject-formajax" data-rules="required" data-msgCustom="Subject">
+							    <input type="text" id="subject" name="subject" data-rules="required" data-msgCustom="Subject">
 							</div>
 							<div class="form-group fullX">
 							    <label for="message" class="fl">MESSAGE:</label>
-							    <textarea id="message" name="message-formajax" rows="10" style="width:100%;" data-rules="required|max:10" data-msgCustom="Message"></textarea>
+							    <textarea id="message" name="message" rows="10" style="width:100%;" data-rules="required|max:10" data-msgCustom="Message"></textarea>
 							</div>
 							<button type="submit">
 							        ENVIAR
 							</button>
-						</form>						
+						</form>					
+
+						<div id="result_inspect" class="result_inspect">JSON</div>
+
 					</div>
 
-					<div id="result_inspect" class="result_inspect">JSON</div>
-				</div> -->
+				</div>
 
-				<a class="link margin" href="https://github.com/ktquez/pickout/#how-to-use">For more options, please access the repository</a>
+				<a class="link margin" href="https://github.com/ktquez/Inspect#how-to-use">For more options, please access the repository</a>
 
 			</div>
 
@@ -257,15 +264,15 @@ inspect.make(function(data) {
 		
 		<div class="fullX margin">			
 			<div class="box-btn centerX">
-				<a class="btn_down" href="https://github.com/ktquez/pickout">DOWNLOAD</a>
+				<a class="btn_down" href="https://github.com/ktquez/Inspect/archive/master.zip">DOWNLOAD</a>
 				
 				<div class="fl" style="margin-right:10px;">						
-					<a href="https://twitter.com/share" class="twitter-share-button fl" data-url="http://ktquez.github.io/pickout" data-text="Pickout - Cool and powerful effect to select fields. Javascript vanilla and &lt;2kb gzipped" data-via="ktquez">Tweet</a>
+					<a href="https://twitter.com/share" class="twitter-share-button fl" data-url="https://github.com/ktquez/Inspect" data-text="Form validation in Javascript Vanilla, without dependencies and multiple languages. &lt; 3kb gzipped." data-via="ktquez">Tweet</a>
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 				</div>
 
 				<div class="btn_stars_gh">
-					<iframe src="https://ghbtns.com/github-btn.html?user=ktquez&amp;repo=pickout&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+					<iframe src="https://ghbtns.com/github-btn.html?user=ktquez&amp;repo=Inspect&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
 				</div>
 			</div>
 		</div>
