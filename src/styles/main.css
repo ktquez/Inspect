@@ -123,14 +123,31 @@ body {
 	border-bottom: 1px solid #f2f2f2;
 
 	> .title_feature {font-size: 25px;}
-	> .code, > .action {
-		float: left;
-	}
+
 	> .action {
-		margin-top: 6px;
+		padding-left: 30px;
 		> .title_demo {
 			margin-bottom: 20px;
 			margin-top: 10px;
+		}
+	}
+
+	> .result_inspect{
+		width: calc(100% - 20px);
+		background-color: var(--cream);
+		padding: 20px;
+		float: left;
+		margin-top: 20px;
+	}
+}
+
+@media(--mobile){
+	.box_example {
+		> .action {
+			border-top:1px solid #f2f2f2;
+			margin-top:20px;
+			padding-left: 0;
+			padding-top:20px;
 		}
 	}
 }
@@ -143,11 +160,15 @@ body {
 	font-size: 14px;
 
 	a {
-		color: var(--dark-purple);
+		color: var(--red);
 	}
 
 	.box-btn {
 		float: left;
+
+		> .btn_down {
+			background-color: var(--red);
+		}
 	}
 }
 
@@ -157,13 +178,14 @@ body {
 
 	> label {
 		margin-bottom: 6px;
-		font-size: 14px;
+		font-size: 13px;
 	}
-	> input {
+	> input:not([type="checkbox"]), > textarea {
 		background-color: var(--cream);
-		padding:8px;
-		width:calc(100% - 16px);
-		z-index:9;
+		padding: 10px 8px;
+		width: calc(100% - 16px);
+		z-index: 9;
+		font-size: 14px;		
 	}
 
 }
@@ -181,9 +203,4 @@ button[type='submit'] {
 
 /*prism*/
 :not(pre) > code[class*="language-"], pre[class*="language-"] {background-color: var(--cream);}
-code[class*="language-"], pre[class*="language-"] {font-size: 14px;}
-
-/*pickout*/
-.pk-field.-multiple {
-	cursor: crosshair;	
-}
+code[class*="language-"], pre[class*="language-"] {font-size: 13px;}
