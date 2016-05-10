@@ -161,7 +161,7 @@
 					'touched' : false,
 					'errors' : [],
 					'rules' : self.prepareRules(value.getAttribute('data-rules')),
-					'custom' : value.getAttribute('data-msgCustom'),
+					'custom' : value.getAttribute('data-msg-custom'),
 					'field' : value
 				};
 

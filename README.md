@@ -28,11 +28,11 @@ Include the script of the Inspect on your page
 <form action="#" method="POST" name="formTest" novalidate>
 <div class="form-group">
   <label for="name">NAME:</label>
-	<input type="text" id="name" name="name" data-rules="required" data-msgCustom="Fullname">
+	<input type="text" id="name" name="name" data-rules="required" data-msg-custom="Fullname">
 </div>
 <div class="form-group">
 	<label for="email">EMAIL:</label>
-		<input type="email" id="email" name="email" data-rules="required|email" data-msgCustom="Email">
+		<input type="email" id="email" name="email" data-rules="required|email" data-msg-custom="Email">
 </div>
 <button type="submit">
 		ENVIAR
@@ -44,7 +44,7 @@ Include the script of the Inspect on your page
 `` data-rules `` : The rules that will apply to the field<br>
 **Info:** You can use more than one rule, for it must use the pipe, for examplo: `` required|number|cpf ``
 
-`` data-msgCustom `` ***Opcional*** : Text, if you want to customize the output of the error message<br>
+`` data-msg-custom `` ***Opcional*** : Text, if you want to customize the output of the error message<br>
 **Info:** If it was not informed msn Custom, the field name will be used
 
 ### Rules
@@ -52,13 +52,15 @@ Include the script of the Inspect on your page
 * **email** -- Check a valid email address
 * **max** -- Limit the maximum value, for examplo: `` required|max:10 ``. 
 * **min** -- Limit the minimum value, for examplo: `` min:2 ``.
+* **card** -- Checks if the credit card is entered correctly, 16 digits
+* **number** -- Checks if the value is a number
+* **url** --  Checks if the URL is entered correctly
+
+#### Specific Brazil
 * **cpfCnpf** -- Checks if the value is a valid CPF or CNPJ
 * **cpf** -- Checks if the value is a valid CPF, 11 digits
 * **cnpj** -- Checks if the value is a valid CNPJ, 14 digits
 * **cep** -- Checks if the CEP is entered correctly, format pt-BR (XXXXX-XXX)
-* **card** -- Checks if the credit card is entered correctly, 16 digits
-* **number** -- Checks if the value is a number
-* **url** --  Checks if the URL is entered correctly
 
 ## Defining the form on Inspect
 Instantiates the form only through the name the form
@@ -156,6 +158,8 @@ At the time the error messages are only available in:
 * **en** -- English
 * **es** -- Spanish
 
+**Alert:** - Keep lang directory in the same location as the file inspect.min.js, to load the translation via ajax is successful.
+
 ### How to use custom messages by language
 To make it work the messages in the correct language, simply declare the attribute lang in HTML tag
 ```html
@@ -163,9 +167,12 @@ To make it work the messages in the correct language, simply declare the attribu
 ```
 
 ## Current version stable
-**V1.0.4**
+**V1.0.5**
 
 ## ChangeLog
+
+**V1.0.5**
+ - Change format data attribute custom message
 
 **V1.0.4**
  - Correction alert tooltip 
