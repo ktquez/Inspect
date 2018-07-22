@@ -21,15 +21,58 @@
 			return;
 		}
 
-		// If sent an object with more settings, merges with the default settings			
+		// If sent an object with more settings, merges with the default settings
 		if (!!obj) this.config = this.createConfig(obj);
 
 		// Initializes the tracking form
-		this.setForm(this.config.form);			
+		this.setForm(this.config.form);
+
+		/**
+		 * Load the language for messages
+		 * Compatibility Ajax
+		 */
+		function getXHR(){
+			// Demais browsers
+			if(window.XMLHttpRequest){
+				return new XMLHttpRequest();
+			}
+			// Microsoft
+			try {
+				return new ActiveXObject("Msxml2.XMLHTTP");
+			}
+			catch (e) {
+				try {
+					return new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				catch (e) {}
+			}
+		}
+
+		/**
+		 * Ajax
+		 */
+		var languague = document.getElementsByTagName('html')[0].getAttribute('lang').toLowerCase(),
+			xhr = getXHR();
+
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState === 4){
+				if(xhr.status === 200){
+					Inspect.prototype.messages = JSON.parse(xhr.responseText);
+				}
+			}
+		};
+
+		var basepath = this.config.basepath;
+		if (basepath == null) {
+			basepath = '';
+		}
+
+		xhr.open('GET', basepath+'/lang-inspect/'+languague+'.json', true);
+		xhr.send();
 	};
 
 	// Add to the window object
-	window.Inspect = Inspect;	
+	window.Inspect = Inspect;
 
 	Inspect.prototype = {
 
@@ -40,14 +83,15 @@
 		defaults : {
 			animateScroll : 8,
 			touched : false,
-			tooltip : false		
+			tooltip : false,
+			basepath: null
 		},
 
 		/**
 		 * instanceOfInpect.make().then(function(data){
 		 * 		// código aqui
 		 * });
-		 * 
+		 *
 		 * make: (AJAX) Validates the form and return the data in a callback
 		 * @return {callback}
 		 */
@@ -68,14 +112,14 @@
 					errors.push(self.validate(objForm[field.name]));
 					if (field.type === 'submit') return;
 					data[field.name] = field.value;
-				});		
+				});
 
 				if (!!errors) self.filter(errors);
 
 				if (!self.fails()) {
 					callback(data);
 					objForm.submitted = false;
-					return;	
+					return;
 				}
 
 			}, false);
@@ -84,20 +128,20 @@
 		/**
 		 * instanceOfInpect.toSubmit();
 		 *
-		 * toSubmit: Submit the form if no error occurs		  
+		 * toSubmit: Submit the form if no error occurs
 		 */
-		toSubmit : function(){			
+		toSubmit : function(){
 			var self = this,
 				objForm = self[self.config.form];
 
 			objForm.dom.addEventListener('submit', function(e){
 				objForm.submitted = true;
-				
+
 				// for each to Validate form fields
 				self.utils.convertObjToArray(objForm.dom).map(function(field){
 					var error = self.validate(objForm[field.name]);
 					if (!!error) self.filter(error);
-				});				
+				});
 
 				// If fails, block form and show errors
 				if (self.fails()) {
@@ -186,7 +230,7 @@
 		touched : function(obj){
 			var self = this;
 			obj.field.addEventListener('focus', function(){
-				obj.touched = true;				
+				obj.touched = true;
 			}, false);
 			obj.field.addEventListener('blur', function(e){
 				if(!obj.rules.length) return;
@@ -194,7 +238,7 @@
 				self.untouched(obj);
 			}, false);
 		},
-		
+
 		/**
 		 * Validation on blur field
 		 * @param  {object} obj Object manager with information on field specific of the form
@@ -203,7 +247,7 @@
 			var self = this;
 
 			obj.touched = false;
-	
+
 			var errors = self.validate(obj);
 			self.filter(errors);
 		},
@@ -233,7 +277,7 @@
 					rule = value.split(':');
 
 					// Verify custom rules with others parameters
-					verify = self.verify[rule[0]](obj.field.value, rule[1]);					
+					verify = self.verify[rule[0]](obj.field.value, rule[1]);
 				}else{
 					rule = value;
 					var val = obj.field.value;
@@ -249,13 +293,13 @@
 							var radios = self[self.config.form].dom.querySelectorAll('input[name="'+obj.field.name+'"]');
 							var verifyMultipleRadios = self.utils.convertObjToArray(radios).filter(function(value){
 								return !!value.checked;
-							});							
+							});
 							val = !verifyMultipleRadios.length ? '' : val;
-						}	
+						}
 					}
 
 					// Verify normal rules
-					verify = self.verify[value](val);				
+					verify = self.verify[value](val);
 				}
 
 				// remove error to object
@@ -296,9 +340,9 @@
 
 				return;
 			}
-			
+
 			// If no errors returns false
-			self[self.config.form].error = false;			
+			self[self.config.form].error = false;
 
 		},
 
@@ -331,14 +375,14 @@
 			block.style.position = 'relative';
 			var prevBlock = block.previousElementSibling;
 			var nextBlock = block.nextElementSibling;
-						
+
 			// Z-index
 			if (!!prevBlock) {
 				block.style.zIndex = !prevBlock.style.zIndex.length ? (!nextBlock.style.zIndex.length ? '900' : Number(nextBlock.style.zIndex) + 2) : prevBlock.style.zIndex;
 				block.style.zIndex = block.style.zIndex - 1;
 			} else {
 				block.style.zIndex = '1000';
-			} 
+			}
 
 			block.appendChild(alert);
 		},
@@ -358,7 +402,7 @@
 		},
 	};
 
-	Inspect.prototype.utils = {	
+	Inspect.prototype.utils = {
 
 		animateScroll : function(data){
 
@@ -379,8 +423,8 @@
 				var scroll = window.scrollY;
 
 				if (pos < scroll){
-					window.scrollTo(0, scroll - interval);	
-					return;					
+					window.scrollTo(0, scroll - interval);
+					return;
 				}
 
 				resetScroll();
@@ -391,7 +435,7 @@
 			function resetScroll(){
 				clearInterval(animate);
 				return;
-			}			
+			}
 		},
 
 		/**
@@ -414,7 +458,7 @@
 
 				if(!div.parentElement) return;
 				div.parentElement.removeChild(div);
-				
+
 			});
 
 			div.appendChild(main);
@@ -437,9 +481,9 @@
 			div.setAttribute('class','inspect-message');
 
 			arrow.setAttribute('style', 'border-style:solid;border-width:6px;border-color:transparent;border-bottom-color:rgba(231,76,60,0.6);position:absolute;left:50%;transform:translateX(-50%);top:-12px;');
-			
+
 			close.setAttribute('style', 'font-weight:bold;position:absolute;right:3px;bottom:-2px;color:#999;cursor:pointer;padding:0 3px 0');
-			close.setAttribute('class','close-inspect-message');			
+			close.setAttribute('class','close-inspect-message');
 			close.innerHTML = "&times;";
 
 			bottom.setAttribute('style', 'background:#f2f2f2;height:15px;width:100%;float:left;');
@@ -458,7 +502,7 @@
 			close.addEventListener('click', function(e){
 				e.preventDefault();
 				e.stopPropagation();
-				
+
 				// Animating the div to hide
 				div.style.left = '-100px';
 				div.style.visibility = 'hidden';
@@ -487,7 +531,7 @@
 			// Animating the div to display
 			setTimeout(function(){
 				if (/(checkbox|radio)/.test(field.type)) {
-					div.style.left = field.offsetLeft + parseInt(field.offsetWidth / 2) - 86 + 'px';					
+					div.style.left = field.offsetLeft + parseInt(field.offsetWidth / 2) - 86 + 'px';
 				}else{
 					div.style.left = (field.offsetWidth - 174) + 'px';
 				}
@@ -496,30 +540,30 @@
 			}, 200);
 
 			return div;
-		},		
+		},
 
 		/**
 		 * Assigns a custom error message alert
 		 * @param {Object} obj = Object manager with information on field specific of the form
-		 * @param {Object} elemText = Element that the message text is displayed 
-		 * @param {String} rule = Rule that the error occurred 
+		 * @param {Object} elemText = Element that the message text is displayed
+		 * @param {String} rule = Rule that the error occurred
 		 */
 		setMessageError : function(obj, elemText, rule){
 			var self = this,
 				custom = !!obj.custom ? obj.custom : obj.name,
 				messages = Inspect.prototype.messages,
 				msgRule;
-			
+
 			if (Array.isArray(rule)) {
 				msgRule = messages[rule[0]];
-				msgRule = msgRule.replace(':other', rule[1]);				
+				msgRule = msgRule.replace(':other', rule[1]);
 			}else{
-				msgRule = messages[rule];				
+				msgRule = messages[rule];
 			}
 
 			msgRule = msgRule.replace(/(:custom)/g, custom);
 			elemText.innerHTML = msgRule;
-			return;			
+			return;
 		},
 
 		convertObjToArray : function(obj){
@@ -568,7 +612,7 @@
 		},
 
 		cpfCnpj : function(value) {
-			if (this.cpf(value) && this.cnpj(value)) return true;			
+			if (this.cpf(value) && this.cnpj(value)) return true;
 			return false;
 		},
 
@@ -601,7 +645,7 @@
 			firstResult = (firstResult * 10) % 11;
 
 			// Caso o resto seja 10, o dígito será sempre 0
-			firstResult = firstResult === 10 ? 0 : firstResult; 
+			firstResult = firstResult === 10 ? 0 : firstResult;
 
 			// Se o resultado não coincidir com o 1 dígito verificador
 			if (firstResult !== Number(numbers[12])) return true;
@@ -621,7 +665,7 @@
 			secondResult = (secondResult * 10) % 11;
 
 			// Caso o resto seja 10, o dígito será sempre 0
-			secondResult = secondResult === 10 ? 0 : secondResult; 
+			secondResult = secondResult === 10 ? 0 : secondResult;
 
 			// Se o resultado não coincidir com o 1 dígito verificador
 			if (secondResult !== Number(numbers[13])) return true;
@@ -650,7 +694,7 @@
 			 * São irregulares todos os CPFs que os dígitos sejam iguais (por exemplo: 11111111111)
 			 */
 			irregular = numbers.every(function(value){
-				return value === numbers[0]; 
+				return value === numbers[0];
 			});
 
 			if (irregular) return true;
@@ -662,8 +706,8 @@
 			firstResult = (firstResult * 10) % 11;
 
 			// Caso o resto seja 10, o dígito será sempre 0
-			firstResult = firstResult === 10 ? 0 : firstResult; 
-			
+			firstResult = firstResult === 10 ? 0 : firstResult;
+
 			// Se o resultado não coincidir com o 1 dígito verificador
 			if (firstResult !== Number(numbers[9])) return true;
 
@@ -677,7 +721,7 @@
 			secondResult = (secondResult * 10) % 11;
 
 			// Caso o resto seja 10, o dígito será sempre 0
-			secondResult = secondResult === 10 ? 0 : secondResult; 
+			secondResult = secondResult === 10 ? 0 : secondResult;
 
 			// Se o resultado não coincidir com o 2 dígito verificador
 			if (secondResult !== Number(numbers[10])) return true;
@@ -702,64 +746,8 @@
 		url : function(value) {
 			return !/(http|https)+(:\/\/)+(www.|)+[0-9a-z\-]+\.(.)+/.test(value);
 		}
-	}; 
+	};
 	// End of Inspect
-
-	/**
-	 * Load the language for messages
-	 * Compatibility Ajax
-	 */
-	function getXHR(){
-		// Demais browsers
-		if(window.XMLHttpRequest){
-			return new XMLHttpRequest();
-		}
-		// Microsoft
-		try {
-	        return new ActiveXObject("Msxml2.XMLHTTP");
-	    } 
-	    catch (e) {
-	    	try {
-	          return new ActiveXObject("Microsoft.XMLHTTP");
-	    	} 
-	    	catch (e) {}
-	    }
-	}
-
-	/**
-	 * Pega a url base do script inspect
-	 */
-	function basepath() {
-	    var scripts = document.getElementsByTagName('script'),
-	        script = scripts[scripts.length - 1];
-
-	    if (!!script.getAttribute.length) {
-	    	var path = script.getAttribute('src').split('/');
-	    	path.splice((path.length - 1), 1);
-	    	path = path.toString().replace(/(,)/g, '/');
-
-	    	return path;
-	    }
-	}
-
-	/**
-	 * Ajax
-	 */
-	(function go(){
-		var languague = document.getElementsByTagName('html')[0].getAttribute('lang').toLowerCase(),
-			xhr = getXHR();		
-
-		xhr.onreadystatechange = function(){				
-			if(xhr.readyState === 4){
-				if(xhr.status === 200){
-					Inspect.prototype.messages = JSON.parse(xhr.responseText);
-				}
-			}
-		};
-
-		xhr.open('GET', basepath()+'/lang-inspect/'+languague+'.json', true);			
-		xhr.send();		
-	})();
 
 })(window);
 
