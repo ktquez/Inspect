@@ -26,17 +26,15 @@ Include the script of the Inspect on your page
 ## Create your form
 ```html
 <form action="#" method="POST" name="formTest" novalidate>
-<div class="form-group">
-  <label for="name">NAME:</label>
-	<input type="text" id="name" name="name" data-rules="required" data-msg-custom="Fullname">
-</div>
-<div class="form-group">
-	<label for="email">EMAIL:</label>
-		<input type="email" id="email" name="email" data-rules="required|email" data-msg-custom="Email">
-</div>
-<button type="submit">
-		ENVIAR
-</button>
+  <div class="form-group">
+    <label for="name">NAME:</label>
+    <input type="text" id="name" name="name" data-rules="required" data-msg-custom="Fullname">
+  </div>
+  <div class="form-group">
+    <label for="email">EMAIL:</label>
+    <input type="email" id="email" name="email" data-rules="required|email" data-msg-custom="Email">
+  </div>
+  <button type="submit">ENVIAR</button>
 </form>
 ```
 
@@ -71,10 +69,10 @@ var myForm = new Inspect('formTest');
 Instance the form through the settings
 ```js
 var myForm = new Inspect({
-		'form' : 'formTest',
-		'touched' : true,
-		'tooltip' : true
-	});
+  'form' : 'formTest',
+  'touched' : true,
+  'tooltip' : true
+});
 ```
 
 ### Settings
@@ -96,7 +94,7 @@ For validations and data prepared for AJAX requests, use the following syntax:
 ```js
 var myForm = new Inspect('formTest');
 myForm.make(function(data){
-	// your code here (for example: AJAX requests)
+  // your code here (for example: AJAX requests)
 });
 ```
 
